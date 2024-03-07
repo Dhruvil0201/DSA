@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>task-2.1</title>
+  </head>
+  <body>
+    <script>
+      class Node {
+        constructor(data) {
+          this.data = data;
+          this.next = null;
+        }
+      }
+
+      class LinkedList {
+        constructor() {
+          this.head = null;
+        }
+
+        insertAtPosition(data, position) {
+          const newNode = new Node(data);
+          if (position === 0) {
+            newNode.next = this.head;
+            this.head = newNode;
+          } else {
+            let current = this.head;
+            let prev = null;
+            let index = 0;
+
+            while (current && index < position) {
+              prev = current;
+              current = current.next;
+              index++;
+            }
+
+            if (prev) {
+              prev.next = newNode;
+              newNode.next = current;
+            }
+          }
+        }
+
+        printList() {
+          let current = this.head;
+          while (current) {
+            console.log(current.data);
+            current = current.next;
+          }
+        }
+      }
+
+      const myList = new LinkedList();
+      myList.insertAtPosition(1, 0);
+      myList.insertAtPosition(2, 1);
+      myList.insertAtPosition(3, 1);
+      myList.insertAtPosition(4, 2);
+
+      console.log("Linked List:");
+      console.log(myList);
+      myList.printList();
+    </script>
+  </body>
+</html>
